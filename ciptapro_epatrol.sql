@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2023 at 06:27 AM
+-- Generation Time: Feb 16, 2023 at 10:54 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -281,26 +281,31 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `core_patrol`
+-- Table structure for table `core_location`
 --
 
-CREATE TABLE `core_patrol` (
-  `patrol_id` int(11) NOT NULL,
-  `patrol_name` varchar(100) NOT NULL,
+CREATE TABLE `core_location` (
+  `location_id` int(11) NOT NULL,
+  `location_name` varchar(100) NOT NULL,
+  `location_longtitude` varchar(100) NOT NULL,
+  `location_latitude` varchar(100) NOT NULL,
   `created_id` int(11) NOT NULL,
-  `day` varchar(15) NOT NULL,
-  `description` varchar(100) NOT NULL,
   `data_state` int(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `core_patrol`
+-- Dumping data for table `core_location`
 --
 
-INSERT INTO `core_patrol` (`patrol_id`, `patrol_name`, `created_id`, `day`, `description`, `data_state`, `created_at`, `updated_at`) VALUES
-(26, 'asas', 55, '1', 'dad', 0, '2022-11-07 02:23:12', '2022-11-07 02:23:12');
+INSERT INTO `core_location` (`location_id`, `location_name`, `location_longtitude`, `location_latitude`, `created_id`, `data_state`, `created_at`, `updated_at`) VALUES
+(9, 'Lantai 55', '13132442425', '57575757575', 55, 0, '2023-01-06 17:00:00', '2023-01-07 10:27:08'),
+(10, 'Lantai 2', '1313244214141', '64636363636363', 55, 0, '2022-09-13 06:49:05', '2022-09-13 06:49:05'),
+(11, 'Lantai 3', '6757244214141', '36363636363758', 55, 0, '2022-09-13 06:49:19', '2022-09-13 06:49:19'),
+(12, 'adada', '3434343', '4343434343', 55, 0, '2023-01-06 19:27:31', '2023-01-06 19:27:31'),
+(13, 'Parkiran Atas', '54747457', '54747457', 55, 0, '2023-02-15 17:00:00', '2023-02-15 20:20:16'),
+(14, 'Lantai 7', '54645654', '54645654', 55, 0, '2023-02-15 17:00:00', '2023-02-16 03:19:49');
 
 -- --------------------------------------------------------
 
@@ -318,33 +323,6 @@ CREATE TABLE `core_patrol_item` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `core_patrol_location`
---
-
-CREATE TABLE `core_patrol_location` (
-  `patrol_location_id` int(11) NOT NULL,
-  `location_name` varchar(100) NOT NULL,
-  `longtitude` varchar(100) NOT NULL,
-  `latitude` varchar(100) NOT NULL,
-  `created_id` int(11) NOT NULL,
-  `data_state` int(1) NOT NULL DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `core_patrol_location`
---
-
-INSERT INTO `core_patrol_location` (`patrol_location_id`, `location_name`, `longtitude`, `latitude`, `created_id`, `data_state`, `created_at`, `updated_at`) VALUES
-(9, 'Lantai 1', '13132442425', '57575757575', 55, 0, '2022-09-13 06:48:52', '2022-09-13 06:48:52'),
-(10, 'Lantai 2', '1313244214141', '64636363636363', 55, 0, '2022-09-13 06:49:05', '2022-09-13 06:49:05'),
-(11, 'Lantai 3', '6757244214141', '36363636363758', 55, 0, '2022-09-13 06:49:19', '2022-09-13 06:49:19'),
-(12, 'adada', '3434343', '4343434343', 55, 0, '2023-01-06 19:27:31', '2023-01-06 19:27:31');
 
 -- --------------------------------------------------------
 
@@ -391,7 +369,7 @@ CREATE TABLE `core_personnel` (
 INSERT INTO `core_personnel` (`personnel_id`, `personnel_full_name`, `personnel_nick_name`, `personnel_nik`, `personnel_gender`, `personnel_address`, `personnel_phone`, `personnel_phone_family`, `personnel_birth_place`, `personnel_birth_date`, `data_state`, `created_id`, `created_at`, `updated_at`) VALUES
 (6, 'Fajar', 'Fajar', 'asas', '1', 'asasa', '4343434343434', '089786815161', 'sasas', '2022-11-26', 0, 55, '2022-11-25 19:41:24', '2022-11-25 19:41:24'),
 (7, 'Ucup', 'dadad', '54545', '1', 'adadad', '5454545', '54545454', 'rerere', '2023-01-07', 0, 55, '2023-01-06 17:00:00', '2023-01-06 21:59:42'),
-(8, 'pipip', 'dgdgdgd', '54454', '1', 'dgdgdgdg', '5454454', '54545454', 'dgdgdgd', '2023-01-07', 0, 55, '2023-01-06 17:00:00', '2023-01-06 22:06:54');
+(8, 'pipip', 'dgdgdgd', '54454', '1', 'dgdgdgdg', '5454454', '54545454', 'dgdgdgd', '2023-01-07', 1, 55, '2023-01-06 17:00:00', '2023-02-16 01:32:29');
 
 -- --------------------------------------------------------
 
@@ -416,6 +394,61 @@ CREATE TABLE `core_personnel_scheduling` (
 
 INSERT INTO `core_personnel_scheduling` (`scheduling_id`, `patrol_item_id`, `user_id`, `full_name`, `phone_number`, `data_state`, `created_at`, `updated_at`) VALUES
 (14, 1, 1, 'Joko Siswanto', '085725661787', 0, '2022-09-13 07:03:39', '2022-09-13 07:03:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `core_schedule`
+--
+
+CREATE TABLE `core_schedule` (
+  `schedule_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `schedule_day` varchar(15) NOT NULL,
+  `schedule_description` varchar(100) NOT NULL,
+  `created_id` int(11) NOT NULL,
+  `data_state` int(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `core_schedule`
+--
+
+INSERT INTO `core_schedule` (`schedule_id`, `location_id`, `schedule_day`, `schedule_description`, `created_id`, `data_state`, `created_at`, `updated_at`) VALUES
+(26, 13, '1', 'jgjgjg', 55, 0, '2022-11-07 02:23:12', '2023-02-16 01:34:35'),
+(27, 10, '2', 'fasasafa', 55, 1, '2023-02-15 17:00:00', '2023-02-16 01:33:26'),
+(28, 11, '3', 'asas', 55, 0, '2023-02-15 17:00:00', '2023-02-16 06:34:55'),
+(29, 10, '2', 'tytyty', 55, 1, '2023-02-15 17:00:00', '2023-02-16 01:34:11'),
+(30, 9, '1', 'jyjhjhjh', 55, 0, '2023-02-15 17:00:00', '2023-02-16 07:05:02'),
+(31, 9, '1', 'fsfsfsf', 55, 0, '2023-02-15 17:00:00', '2023-02-16 07:05:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `core_shift`
+--
+
+CREATE TABLE `core_shift` (
+  `shift_id` int(11) NOT NULL,
+  `shift_name` varchar(100) DEFAULT NULL,
+  `shift_start_hours` varchar(100) DEFAULT NULL,
+  `shift_end_hours` varchar(100) DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `core_shift`
+--
+
+INSERT INTO `core_shift` (`shift_id`, `shift_name`, `shift_start_hours`, `shift_end_hours`, `data_state`, `created_id`, `created_at`, `updated_at`) VALUES
+(1, 'Shift 1', '07:00', '15:00', 0, 55, '2023-02-15 17:00:00', '2023-02-16 02:01:28'),
+(2, 'Shift 2', '14:00', '22:00', 0, 55, '2023-02-15 17:00:00', '2023-02-16 09:20:30'),
+(3, 'Shift 3', '22:00', '07:00', 0, 55, '2023-02-15 17:00:00', '2023-02-16 09:21:23');
 
 -- --------------------------------------------------------
 
@@ -1565,12 +1598,12 @@ CREATE TABLE `system_menu` (
 
 INSERT INTO `system_menu` (`id_menu`, `id`, `type`, `indent_level`, `text`, `image`, `last_update`) VALUES
 ('0', 'home', 'file', 1, 'Beranda', NULL, '2021-12-18 04:09:42'),
-('71', 'personnel', 'file', 1, 'Personil', NULL, '2023-01-07 02:43:33'),
+('5', 'personnel', 'file', 1, 'Personil', NULL, '2023-02-16 08:23:47'),
+('6', 'schedule', NULL, 1, 'Jadwal Patroli', NULL, '2023-02-16 08:24:04'),
+('7', 'precense', 'file', 1, 'Presensi Personil', NULL, '2023-02-16 09:43:06'),
 ('8', '#', 'folder', 1, 'Konfigurasi', NULL, '2023-01-06 08:09:10'),
-('81', 'desc-patrol', 'file', 2, 'Jenis Patroli', NULL, '2023-01-06 08:09:34'),
-('82', 'patrol-location', 'file', 2, 'Lokasi Patroli', NULL, '2022-09-10 18:57:37'),
-('83', 'patrol-schedule', 'file', 2, 'Jadwal Patroli', NULL, '2022-09-03 15:54:31'),
-('84', 'personnel-scheduling', 'file', 2, 'Penjadwalan Personil', NULL, '2022-09-03 15:57:30'),
+('81', 'location', 'file', 2, 'Lokasi Patroli', NULL, '2023-02-16 08:24:36'),
+('82', 'shift', 'file', 2, 'Shift Patroli', NULL, '2023-02-16 08:24:43'),
 ('9', '#', 'folder', 1, 'System', NULL, '2023-01-06 08:07:07'),
 ('91', 'system-user', 'file', 2, 'System User', NULL, '2023-01-06 08:07:11'),
 ('92', 'system-user-group', 'file', 2, 'System User Group', NULL, '2023-01-06 08:07:17');
@@ -1596,13 +1629,13 @@ CREATE TABLE `system_menu_mapping` (
 INSERT INTO `system_menu_mapping` (`menu_mapping_id`, `user_group_level`, `id_menu`, `created_at`, `updated_at`) VALUES
 (39, 1, '9', '2022-01-07 04:16:59', '2022-01-06 21:16:59'),
 (40, 1, '91', '2022-01-07 04:16:59', '2022-01-06 21:16:59'),
-(139, 1, '71', NULL, '2023-01-06 07:59:22'),
+(139, 1, '5', NULL, '2023-01-06 07:59:22'),
 (140, 1, '8', NULL, '2023-01-06 07:59:48'),
-(141, 1, '81', NULL, '2023-01-06 07:59:58'),
-(142, 1, '82', NULL, '2023-01-06 08:00:08'),
-(143, 1, '83', NULL, '2023-01-06 08:01:13'),
-(144, 1, '84', NULL, '2023-01-06 08:01:30'),
-(145, 1, '92', NULL, '2023-01-06 08:06:36');
+(142, 1, '81', NULL, '2023-01-06 08:00:08'),
+(143, 1, '82', NULL, '2023-01-06 08:01:13'),
+(145, 1, '92', NULL, '2023-01-06 08:06:36'),
+(146, 1, '6', NULL, '2023-02-16 08:24:57'),
+(147, 1, '7', NULL, '2023-02-16 09:43:29');
 
 -- --------------------------------------------------------
 
@@ -1706,10 +1739,10 @@ ALTER TABLE `ci_sessions`
   ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
--- Indexes for table `core_patrol`
+-- Indexes for table `core_location`
 --
-ALTER TABLE `core_patrol`
-  ADD PRIMARY KEY (`patrol_id`);
+ALTER TABLE `core_location`
+  ADD PRIMARY KEY (`location_id`);
 
 --
 -- Indexes for table `core_patrol_item`
@@ -1717,12 +1750,6 @@ ALTER TABLE `core_patrol`
 ALTER TABLE `core_patrol_item`
   ADD PRIMARY KEY (`patrol_item_id`),
   ADD KEY `patrol_id` (`patrol_id`);
-
---
--- Indexes for table `core_patrol_location`
---
-ALTER TABLE `core_patrol_location`
-  ADD PRIMARY KEY (`patrol_location_id`);
 
 --
 -- Indexes for table `core_patrol_task`
@@ -1742,6 +1769,18 @@ ALTER TABLE `core_personnel`
 --
 ALTER TABLE `core_personnel_scheduling`
   ADD PRIMARY KEY (`scheduling_id`);
+
+--
+-- Indexes for table `core_schedule`
+--
+ALTER TABLE `core_schedule`
+  ADD PRIMARY KEY (`schedule_id`);
+
+--
+-- Indexes for table `core_shift`
+--
+ALTER TABLE `core_shift`
+  ADD PRIMARY KEY (`shift_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -1848,22 +1887,16 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `core_patrol`
+-- AUTO_INCREMENT for table `core_location`
 --
-ALTER TABLE `core_patrol`
-  MODIFY `patrol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+ALTER TABLE `core_location`
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `core_patrol_item`
 --
 ALTER TABLE `core_patrol_item`
   MODIFY `patrol_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `core_patrol_location`
---
-ALTER TABLE `core_patrol_location`
-  MODIFY `patrol_location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `core_patrol_task`
@@ -1882,6 +1915,18 @@ ALTER TABLE `core_personnel`
 --
 ALTER TABLE `core_personnel_scheduling`
   MODIFY `scheduling_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `core_schedule`
+--
+ALTER TABLE `core_schedule`
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `core_shift`
+--
+ALTER TABLE `core_shift`
+  MODIFY `shift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1929,7 +1974,7 @@ ALTER TABLE `system_log_user`
 -- AUTO_INCREMENT for table `system_menu_mapping`
 --
 ALTER TABLE `system_menu_mapping`
-  MODIFY `menu_mapping_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `menu_mapping_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `system_user`
@@ -1957,13 +2002,13 @@ ALTER TABLE `users`
 -- Constraints for table `core_patrol_item`
 --
 ALTER TABLE `core_patrol_item`
-  ADD CONSTRAINT `FK_GXGTEGY0U` FOREIGN KEY (`patrol_id`) REFERENCES `core_patrol` (`patrol_id`);
+  ADD CONSTRAINT `FK_GXGTEGY0U` FOREIGN KEY (`patrol_id`) REFERENCES `core_schedule` (`schedule_id`);
 
 --
 -- Constraints for table `core_patrol_task`
 --
 ALTER TABLE `core_patrol_task`
-  ADD CONSTRAINT `FK_Z07R0BNFD` FOREIGN KEY (`patrol_item_id`) REFERENCES `core_patrol_location` (`patrol_location_id`);
+  ADD CONSTRAINT `FK_Z07R0BNFD` FOREIGN KEY (`patrol_item_id`) REFERENCES `core_location` (`location_id`);
 
 --
 -- Constraints for table `system_menu_mapping`

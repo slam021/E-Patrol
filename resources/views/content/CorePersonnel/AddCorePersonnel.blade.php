@@ -4,18 +4,13 @@
 
 @section('content_header')
 
-<div style="padding-bottom: 28px;">
-    {{-- <h3 class="page-title float-left">
-        <b> Tambah Data Personil </b>
-    </h3> --}}
-    <div class="float-left">
+    <nav class="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('home') }}">Beranda</a></li>
             <li class="breadcrumb-item"><a href="{{ url('personnel') }}">Data Personill</a></li>
             <li class="breadcrumb-item active" aria-current="page">Tambah Data Personil</li>
         </ol>
-    </div>
-</div>
+    </nav>
 @stop
 @section('content')
 

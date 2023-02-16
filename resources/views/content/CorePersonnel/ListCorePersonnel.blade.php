@@ -6,17 +6,12 @@
 
 @section('content_header')
 
-<div style="padding-bottom: 28px;">
-    {{-- <h3 class="page-title float-left">
-        <b>Data Personil</b>
-    </h3> --}}
-    <div class="float-left">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('home') }}">Beranda</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data Personil</li>
-        </ol>
-    </div>
-</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('personnel') }}">Data Personil</a></li>
+    </ol>
+</nav>
 
 @stop
 
@@ -38,17 +33,17 @@
 
 <div class="card border border-dark">
     <div class="card-header bg-dark clearfix">
-        <h5 class="mb-0 float-left">
+        <h5 class="float-left">
             Mengelola Data Personil
         </h5>
         <div class="form-actions float-right">
-            <button onclick="location.href='{{ route('add-personnel') }}'" name="Find" class="btn btn-sm btn-info" title="Add Data"><i class="fa fa-plus"></i> Tambah Administrator</button>
+            <button onclick="location.href='{{ route('add-personnel') }}'" name="Find" class="btn btn-sm btn-info" title="Add Data"><i class="fa fa-plus"></i> Tambah Data Personil</button>
         </div>
     </div>
 
-    <div class="card-body">
+    <div class="card-body table-responsive">
         <div class="table-responsive">
-            <table id="example" style="width:100%" class="table table-sm table-striped table-bordered table-hover table-full-width">
+            <table id="example" class="table table-sm table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <!-- <th width="5%" style='text-align:center'>User ID</th> -->

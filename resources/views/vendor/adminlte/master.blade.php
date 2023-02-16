@@ -15,7 +15,7 @@
     {{-- Title --}}
     <title>
         @yield('title_prefix', config('adminlte.title_prefix', ''))
-        @yield('title', config('adminlte.title', 'E-Patrol'))
+        @yield('title', config('adminlte.title', 'KAROTA KING'))
         @yield('title_postfix', config('adminlte.title_postfix', ''))
     </title>
 
@@ -124,6 +124,29 @@ float: left !important;
                     // ]
                 });
                 $('#example').addClass('pull-left');
+                
+            
+                $('#example2').dataTable({
+                        "aLengthMenu": [
+                            [5, 15, 20, -1],
+                            [5, 15, 20, "All"] // change per page values here
+                        ],
+                        // // set the initial value
+                        "iDisplayLength": 5,
+                        "scrollX" : true,
+                        // "oLanguage": {
+                        //     "sLengthMenu": "_MENU_ records",
+                        //     "oPaginate": {
+                        //         "sPrevious": "Prev",
+                        //         "sNext": "Next"
+                        //     }
+                        // },
+                        // "aoColumnDefs": [
+                        //     { 'bSortable': false, 'aTargets': [0] },
+                        //     { "bSearchable": false, "aTargets": [ 0 ] }
+                        // ]
+                    });
+                    $('#example2').addClass('pull-left');
                 
             } );
             $(document).ready(function() {

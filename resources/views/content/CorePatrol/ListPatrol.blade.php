@@ -6,18 +6,15 @@
 
 @section('content_header')
 
-<div style="padding-bottom: 35px;">
-    <h3 class="page-title float-left">
+    {{-- <h3 class="page-title float-left">
         <b>Deskripsi Tugas Patroli</b>
-    </h3>
-    <div class="float-right">
+    </h3> --}}
+    <div class="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('home') }}">Beranda</a></li>
             <li class="breadcrumb-item active" aria-current="page">Deskripsi Tugas Patroli</li>
         </ol>
     </div>
-</div>
-
 @stop
 
 @section('content')
@@ -30,23 +27,23 @@
 <div class="card border border-dark">
     <div class="card-header bg-dark clearfix">
         <h5 class="mb-0 float-left">
-            Mengelola Deskripsi tugas Patroli
+            Mengelola Jadwal Patroli
         </h5>
         <div class="form-actions float-right">
-            <button onclick="location.href='{{ url('desc-patrol/create-desc-patrol') }}'" name="Find" class="btn btn-sm btn-info" title="Add Data"><i class="fa fa-plus"></i> Tambah Deskripsi Patroli Baru</button>
+            <button onclick="location.href='{{ url('desc-patrol/create-desc-patrol') }}'" name="Find" class="btn btn-sm btn-info" title="Add Data"><i class="fa fa-plus"></i> Tambah Jadwal Patroli</button>
         </div>
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="example" style="width:100%" class="table table-striped table-bordered table-hover table-full-width">
+            <table id="example" style="width:100%" class="table table-sm table-striped table-bordered table-hover table-full-width">
                 <thead>
                     <tr>
                         <!-- <th width="5%" style='text-align:center'>User ID</th> -->
                         <th width="3%" style='text-align:center'>No</th>
                         <th width="10%" style='text-align:center'>Jenis Patroli</th>
                         <th width="5%" style='text-align:center'>Hari</th>
-                        <th width="25%" style='text-align:center'>Deskripsi Tugas</th>
+                        <th width="25%" style='text-align:center'>Deskripsi</th>
                         <th width="10%" style='text-align:center'>Aksi</th>
                     </tr>
                 </thead>
@@ -70,8 +67,8 @@
                         <td>{{$patrol['description']}}</td>
                         <td>
                             <div class="text-center">
-                                <a type="button" class="btn btn-warning btn-sm" href="{{ url('/desc-patrol/edit-desc-patrol/'.$patrol['patrol_id']) }}" title="Edit"><i class="far fa-edit"></i> Edit</a>
-                                <a type="button" class="btn btn-danger btn-sm" href="{{ url('/desc-patrol/delete-desc-patrol/'.$patrol['patrol_id']) }}" title="Delete"><i class="fas fa-trash-alt"></i> Hapus</a>
+                                <a type="button" class="badge bg-warning" href="{{ url('/desc-patrol/edit-desc-patrol/'.$patrol['patrol_id']) }}" title="Edit"><i class="fas fa-edit"></i> Edit</a>
+                                <a type="button" class="badge bg-danger" href="{{ url('/desc-patrol/delete-desc-patrol/'.$patrol['patrol_id']) }}" title="Delete"><i class="fas fa-trash-alt"></i> Hapus</a>
                             </div>
                         </td>
                     </tr>

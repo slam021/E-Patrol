@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
-@section('title', 'KAROTA KING')
+@section('title', 'Sistem Pendukung Eleksi')
+<link rel="icon" href="{{ asset('resources/assets/logo_vote.ico')}}" />
 
 @section('content_header')
     
@@ -39,28 +40,23 @@
         @csrf
         <div class="card-body">
             <div class="row form-group">
-                <div class="col-md-6">
-                    <a class="text-dark">Nama Lengkap<a class='red'> *</a></a>
-                    <br/>
-                    {!! Form::select('personnel_id',  $data_personnel, $systemuser['personnel_id'], ['class' => 'selection-search-clear select-form']) !!}
-                </div>
-                <div class="col-md-6">
-                    <a class="text-dark">User Group<a class='red'> *</a></a>
-                    <br/>
-                    {!! Form::select('user_group_id',  $systemusergroup, $systemuser['user_group_id'], ['class' => 'selection-search-clear select-form']) !!}
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <a class="text-dark">Nama<a class='red'> *</a></a>
                         <input class="form-control input-bb" type="text" name="name" id="name" value="{{$systemuser['name']}}"/>
                         <input class="form-control input-bb" type="hidden" name="user_id" id="user_id" value="{{$user_id}}"/>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <a class="text-dark">Password<a class='red'> *</a></a>
                         <input class="form-control input-bb" type="password" name="password" id="password" value=""/>
                     </div>
+                </div>
+                <div class="col-md-4">
+                    <a class="text-dark">User Group<a class='red'> *</a></a>
+                    <br/>
+                    {!! Form::select('user_group_id',  $systemusergroup, $systemuser['user_group_id'], ['class' => 'selection-search-clear select-form']) !!}
                 </div>
             </div>
         </div>

@@ -99,7 +99,7 @@ class CorePersonnelController extends Controller
         ]);
 
         // dd($data);
-        $data = CorePersonnel::find($fields['personnel_id'])
+        $data = CorePersonnel::findOrFail($fields['personnel_id'])
         ->update([ 
             'personnel_full_name'             => $fields['personnel_full_name'],
             'personnel_nick_name'             => $fields['personnel_nick_name'],
@@ -113,12 +113,11 @@ class CorePersonnelController extends Controller
         ]);
         
         if($data){
-            $msg = 'Tambah Data Personil Berhasil';
-            return redirect('/personnel')->with('msg', $msg);
+            $msg = 'Edit Data Personil Berhasil';
         }else{
-            $msg = 'Tambah Data Personil Gagal';
-            return redirect('/personnel')->with('msg', $msg);
+            $msg = 'Edit Data Personil Gagal';
         }
+        return redirect('/personnel')->with('msg', $msg);
     }
 
     public function deleteCorePersonnel($personnel_id)

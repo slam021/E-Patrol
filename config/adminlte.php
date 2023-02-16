@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'title' => 'SMArT Baznas Sragen',
+    'title' => 'E-Patrol Security',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -31,8 +31,8 @@ return [
     |
     */
 
-    'use_ico_only' => false,
-    'use_full_favicon' => false,
+    'use_ico_only' => true,
+    'use_full_favicon' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -46,12 +46,12 @@ return [
     |
     */
 
-    'logo' => '<b>M-S</b> Guard',
-    'logo_img' => 'vendor/adminlte/dist/img/epatrollogo.png',
+    'logo' => '<b>E-Patrol Security</b>',
+    'logo_img' => 'vendor/adminlte/dist/img/logo_vote.ico',
     'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'M S G',
+    'logo_img_alt' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => true,
+    'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => true,
     'layout_dark_mode' => null,
@@ -303,7 +303,7 @@ return [
     | For detailed instructions you can look the menu filters section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
-    */    
+    */
 
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,

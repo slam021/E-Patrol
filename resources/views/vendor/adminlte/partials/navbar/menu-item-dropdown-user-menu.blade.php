@@ -23,6 +23,7 @@
                 alt="{{ Auth::user()->name }}">
         @endif
         <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
+            <i class='fas fa-user-tie'></i>
             {{ Auth::user()->name }}
         </span>
     </a>
@@ -36,8 +37,8 @@
                 @if(!config('adminlte.usermenu_image')) h-auto @endif">
                 @if(config('adminlte.usermenu_image'))
                     <img src="{{ Auth::user()->adminlte_image() }}"
-                        class="img-circle elevation-2"
-                        alt="{{ Auth::user()->name }}">
+                         class="img-circle elevation-2"
+                         alt="{{ Auth::user()->name }}">
                 @endif
                 <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
                     {{ Auth::user()->name }}

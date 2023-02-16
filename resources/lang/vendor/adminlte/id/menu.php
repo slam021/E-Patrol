@@ -5,7 +5,7 @@ return [
     'main_navigation'               => 'NAVIGASI UTAMA',
     'blog'                          => 'Blog',
     'pages'                         => 'Halaman',
-    'menu'                          => 'MENU',
+    'menu'                          => '',
     'account_settings'              => 'PENGATURAN AKUN',
     'profile'                       => 'Profil',
     'change_password'               => 'Ubah Kata Sandi',

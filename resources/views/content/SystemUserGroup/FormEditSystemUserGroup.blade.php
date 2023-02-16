@@ -2,7 +2,8 @@
 
 @extends('adminlte::page')
 
-@section('title', 'KAROTA KING')
+@section('title', 'Sistem Pendukung Eleksi')
+<link rel="icon" href="{{ asset('resources/assets/logo_vote.ico')}}" />
 
 @section('js')
 <script>

@@ -1,4 +1,5 @@
 @extends('adminlte::auth.auth-page', ['auth_type' => 'login'])
+<link rel="shortcut icon" href="{{ asset('resources/assets/logo_vote.ico') }}" />
 
 @section('adminlte_css_pre')
     <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
@@ -27,7 +28,7 @@
         {{-- Username field --}}
         <div class="input-group mb-3">
             <input type="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.username') }}" autofocus>
+                   value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.username') }}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -43,7 +44,7 @@
         {{-- Password field --}}
         <div class="input-group mb-3">
             <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                placeholder="{{ __('adminlte::adminlte.password') }}">
+                   placeholder="{{ __('adminlte::adminlte.password') }}">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -65,7 +66,7 @@
                 </div> -->
             </div>
             <div class="col-5">
-                <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                <button type=submit class="btn btn-primary btn-sm{{ config('adminlte.auth_btn') }}" style="margin-left: 50px">
                     <span class="fas fa-sign-in-alt"></span>
                     {{ __('adminlte::adminlte.sign_in') }}
                 </button>

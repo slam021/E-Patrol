@@ -1,6 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer" style="text-align: center">
     @yield('footer')
-    <div class="text-center">
-        <a> Copyright @ 2022 CiptaSolutindo | E-Patrol </a>
-    </div>
+    Copyright © 2022 Cipta Solutindo Tech.
 </footer>

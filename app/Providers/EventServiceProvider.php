@@ -51,7 +51,7 @@ class EventServiceProvider extends ServiceProvider
                         'key'       => $val['id_menu'],
                         'text'      => $val['text'],
                         'url'       => $val['id'],
-                        'active'    => [$val['id'].'*'],
+                        'active'    => [$val['id'].'/*'],
                         'icon'      => '',
                     ]);
                     $last_key = $val['id_menu'];
@@ -60,7 +60,7 @@ class EventServiceProvider extends ServiceProvider
                         'key'       => $val['id_menu'],
                         'text'      => $val['text'],
                         'url'       => $val['id'],
-                        'active'    => [$val['id'].'*'],
+                        'active'    => [$val['id'].'/*'],
                         'classes'   => 'level-two',
                         'icon'      => '',
                     ]);
@@ -70,7 +70,7 @@ class EventServiceProvider extends ServiceProvider
                         'key'       => $val['id_menu'],
                         'text'      => $val['text'],
                         'url'       => $val['id'],
-                        'active'    => [$val['id'].'*'],
+                        'active'    => [$val['id'].'/*'],
                         'classes'   => 'level-three',
                         'icon'      => '',
                     ]);
@@ -80,7 +80,7 @@ class EventServiceProvider extends ServiceProvider
                         'key'       => $val['id_menu'],
                         'text'      => $val['text'],
                         'url'       => $val['id'],
-                        'active'    => [$val['id'].'*'],
+                        'active'    => [$val['id'].'/*'],
                         'classes'   => 'level-four',
                         'icon'      => '',
                     ]);

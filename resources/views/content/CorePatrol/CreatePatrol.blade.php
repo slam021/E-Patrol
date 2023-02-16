@@ -10,19 +10,13 @@
     </ol>
 </nav>
 
-
-<div style="padding-bottom: 35px;">
-    {{-- <h3 class="page-title float-left">
-        <b> Tambah Deskripsi Tugas Patroli </b>
-    </h3> --}}
-    <div class="float-left">
+    <div class="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('home') }}">Beranda</a></li>
             <li class="breadcrumb-item"><a href="{{ url('desc-patrol') }}">Deskripsi Tugas Patroli</a></li>
             <li class="breadcrumb-item active" aria-current="page">Tambah Deskripsi Tugas Patroli</li>
         </ol>
     </div>
-</div>
 @stop
 @section('content')
 
@@ -31,6 +25,21 @@
     {{session('msg')}}
 </div>
 @endif
+
+@php
+    $days = [
+        '' => '',
+        '1' => 'Senin',
+        '2' => 'Selasa',
+        '3' => 'Rabu',
+        '4' => 'Kamis',
+        '5' => "Jum'at",
+        '6' => 'Sabtu',
+        '7' => 'Minggu',
+        
+    ];
+@endphp
+
 <div class="card border border-dark">
     <div class="card-header border-dark bg-dark">
         <h5 class="mb-0 float-left">
@@ -46,31 +55,14 @@
             <div class="row form-group">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <a class="text-dark">Jenis Patroli<a class='red'> *</a></a>
-                        <input class="form-control input-bb" @error('patrol_name') is-invalid @enderror" type="text" name="patrol_name" id="patrol_name" value="{{old('patrol_name')}}" />
-                        @error('patrol_name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
+                        <a class="text-dark">Lokasi Patroli<a class='red'> *</a></a>
+                        <input class="form-control input-bb" type="text" name="patrol_name" id="patrol_name" value="{{old('patrol_name')}}" />
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <a class="text-dark">Hari<a class='red'> *</a></a>
-                        <select class="form-control" type="text" name="day" id="day" value="{{old('day')}}">
-                            <option value="">--Pilih Hari--</option>
-                            <option value="1">Senin</option>
-                            <option value="2">Selasa</option>
-                            <option value="3">Rabu</option>
-                            <option value="4">Kamis</option>
-                            <option value="5">Jumat</option>
-                            <option value="6">Sabtu</option>
-                            <option value="7">Minggu</option>
-                        </select>
-                        @error('day')
-                        <p class="text-danger" style="font-size:13px">{{$message}}</p>
-                        @enderror
+                        {!! Form::select('day', $days, '', ['class' => 'selection-search-clear select-form', 'name' => 'day', 'id' => 'day']) !!}
                     </div>
                 </div>
                 <div class="col-md-4">

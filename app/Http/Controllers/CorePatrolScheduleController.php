@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\CorePatrol;
 use App\Models\CorePatrolItem;
 use App\Http\Requests\CorePatrolRequest;
-use App\Models\CorePatrolLocation;
+use App\Models\CoreLocation;
 use App\Models\CorePatrolTask;
 use App\Models\CorePersonnelScheduling;
-use App\Models\DataPersonnel;
+use App\Models\CorePersonnel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -50,9 +50,9 @@ class CorePatrolScheduleController extends Controller
         // print_r($core_patrol);
         // exit();
 
-        $patrol_location_id = Session::get('patrol_location_id');
-        $data_location = CorePatrolLocation::where('data_state', 0)->pluck('location_name', 'patrol_location_id');
-        return view('content/CorePatrolSchedule/CreatePatrolSchedule', compact('core_patrol', 'core_patrol_item', 'patrol_location_id', 'data_location'));
+        $location_id = Session::get('location_id');
+        $data_location = CoreLocation::where('data_state', 0)->pluck('location_name', 'location_id');
+        return view('content/CorePatrolSchedule/CreatePatrolSchedule', compact('core_patrol', 'core_patrol_item', 'location_id', 'data_location'));
     }
 
     public function createPatrolElementAjax(Request $request)
@@ -72,7 +72,7 @@ class CorePatrolScheduleController extends Controller
         $data_patrol_item = array(
             'record_id'                      => date('YmdHis'),
             'hour'                           => $request->hour,
-            'patrol_location_id'             => $request->patrol_location_id,
+            'location_id'             => $request->location_id,
         );
 
 
@@ -106,14 +106,14 @@ class CorePatrolScheduleController extends Controller
 
     public function getLocationName($location_name)
     {
-        $location = CorePatrolLocation::where('patrol_location_id', $location_name)->first();
+        $location = CoreLocation::where('location_id', $location_name)->first();
         return $location['location_name'];
     }
 
     public function storePatrolSchedule(Request $request)
     {
         $params = $request->all();
-        // print_r($params);
+        dd($params);
         // exit();
         $request->validate([
             'patrol_name'              => 'required',
@@ -123,7 +123,7 @@ class CorePatrolScheduleController extends Controller
 
         $store_patrol = CorePatrol::create([
             'patrol_id'                => $request,
-            'patrol_name'              => $request->patrol_name,
+            // 'patrol_name'              => $request->patrol_name,
             'day'                      => $request->day,
             'description'              => $request->description,
             'created_id'               => Auth::id(),
@@ -133,7 +133,7 @@ class CorePatrolScheduleController extends Controller
             // 'created_on'                 => date('Y-m-d H:i:s'),
         ]);
 
-        $data_location = CorePatrolLocation::where('patrol_location_id', $request->patrol_location_id)->first();
+        $data_location = CoreLocation::where('location_id', $request->location_id)->first();
 
         $corepatrol_last         = CorePatrol::select('patrol_id')
             ->where('created_id', '=', $store_patrol['created_id'])
@@ -147,7 +147,7 @@ class CorePatrolScheduleController extends Controller
                 $store_patrolitem = CorePatrolItem::create([
                     'patrol_id'             => $corepatrol_last['patrol_id'],
                     'hour'                  => $params['hour'][$i],
-                    'patrol_location_id'    => $params['patrol_location_id'][$i],
+                    'location_id'    => $params['location_id'][$i],
                     'created_id'            => Auth::id(),
                 ]);
             }
@@ -167,7 +167,7 @@ class CorePatrolScheduleController extends Controller
         if ($data_corepatrolitem_first == null) {
             $data_corepatrolitem_first     = [];
 
-            $corepatrolitem  = CorePatrolItem::select('patrol_item_id', 'hour', 'patrol_location_id')
+            $corepatrolitem  = CorePatrolItem::select('patrol_item_id', 'hour', 'location_id')
                 ->where('patrol_id', '=', $patrol_id)
                 ->where('data_state', '=', 0)
                 ->get();
@@ -178,7 +178,7 @@ class CorePatrolScheduleController extends Controller
                 $data_item = array(
                     'record_id'                            => $val['patrol_item_id'],
                     'hour'                                 => $val['hour'],
-                    'patrol_location_id'                        => $val['patrol_location_id'],
+                    'location_id'                        => $val['location_id'],
                     'item_status'                          => 9,
                 );
 
@@ -199,10 +199,10 @@ class CorePatrolScheduleController extends Controller
         }
         // dd($data_corepatrolitem_first);
 
-        $patrol_location_id = Session::get('patrol_location_id');
-        $data_location = CorePatrolLocation::where('data_state', 0)->pluck('location_name', 'patrol_location_id');
+        $location_id = Session::get('location_id');
+        $data_location = CoreLocation::where('data_state', 0)->pluck('location_name', 'location_id');
         $corepatrolitem = Session::get('data_patrol_item');
-        return view('content.CorePatrolSchedule.EditPatrolSchedule', compact('corepatrol', 'corepatrolitem', 'patrol_location_id', 'data_location'));
+        return view('content.CorePatrolSchedule.EditPatrolSchedule', compact('corepatrol', 'corepatrolitem', 'location_id', 'data_location'));
     }
 
     public function editReset($patrol_id)
@@ -221,7 +221,7 @@ class CorePatrolScheduleController extends Controller
             'record_id'                      => date('YmdHis'),
             'patrol_id'                      => $request->patrol_id,
             'hour'                           => $request->hour,
-            'patrol_location_id'                  => $request->patrol_location_id,
+            'location_id'                  => $request->location_id,
             'item_status'                    => 1,
         );
 
@@ -285,7 +285,7 @@ class CorePatrolScheduleController extends Controller
                         $dataitem = array(
                             'patrol_id'                 => $fields['patrol_id'],
                             'hour'                      => $val['hour'],
-                            'patrol_location_id'        => $val['patrol_location_id'],
+                            'location_id'        => $val['location_id'],
                             'updated_id'                => Auth::id(),
                         );
 
@@ -370,7 +370,7 @@ class CorePatrolScheduleController extends Controller
         if ($data_corepatrolitem_first == null) {
             $data_corepatrolitem_first     = [];
 
-            $corepatrolitem  = CorePatrolItem::select('patrol_item_id', 'hour', 'patrol_location_id')
+            $corepatrolitem  = CorePatrolItem::select('patrol_item_id', 'hour', 'location_id')
                 ->where('patrol_id', '=', $patrol_id)
                 ->where('data_state', '=', 0)
                 ->get();
@@ -381,7 +381,7 @@ class CorePatrolScheduleController extends Controller
                 $data_item = array(
                     'patrol_item_id'                       => $val['patrol_item_id'],
                     'hour'                                 => $val['hour'],
-                    'patrol_location_id'                   => $val['patrol_location_id'],
+                    'location_id'                   => $val['location_id'],
                     'item_status'                          => 9,
                 );
 
@@ -403,7 +403,7 @@ class CorePatrolScheduleController extends Controller
 
         $personnel_id = Session::get('personnel_id');
         $scheduling = CorePersonnelScheduling::where('data_state', 0)->get();
-        $datapersonnel = DataPersonnel::where('data_state', 0)->pluck('full_name', 'personnel_id', 'phone_number');
+        $datapersonnel = CorePersonnel::where('data_state', 0)->pluck('full_name', 'personnel_id', 'phone_number');
 
         $corepatrolitem = Session::get('data_patrol_item');
         return view('content.CorePatrolSchedule.PersonnelScheduling', compact('corepatrol', 'corepatrolitem', 'datapersonnel', 'personnel_id', 'scheduling'));
@@ -413,7 +413,7 @@ class CorePatrolScheduleController extends Controller
     {
         // dd($request->all());
         $patrol_id = $request->patrol_id;
-        $data_user = DataPersonnel::where('personnel_id', $request->personnel_id)->first();
+        $data_user = CorePersonnel::where('personnel_id', $request->personnel_id)->first();
 
         $scheduling_last = CorePersonnelScheduling::where([
             'patrol_item_id' => $request->patrol_item_id,
@@ -466,7 +466,7 @@ class CorePatrolScheduleController extends Controller
         if ($data_corepatrolitem_first == null) {
             $data_corepatrolitem_first     = [];
 
-            $corepatrolitem  = CorePatrolItem::select('patrol_item_id', 'hour', 'patrol_location_id')
+            $corepatrolitem  = CorePatrolItem::select('patrol_item_id', 'hour', 'location_id')
                 ->where('patrol_id', '=', $patrol_id)
                 ->where('data_state', '=', 0)
                 ->get();
@@ -477,7 +477,7 @@ class CorePatrolScheduleController extends Controller
                 $data_item = array(
                     'patrol_item_id'                       => $val['patrol_item_id'],
                     'hour'                                 => $val['hour'],
-                    'patrol_location_id'                   => $val['patrol_location_id'],
+                    'location_id'                   => $val['location_id'],
                     'item_status'                          => 9,
                 );
 
