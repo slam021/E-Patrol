@@ -3,6 +3,7 @@
 @extends('adminlte::page')
 
 @section('title', 'E-Patrol Security')
+<link rel="shortcut icon" href="{{ asset('resources/assets/logo_epatrol.ico') }}" />
 
 @section('content_header')
 
@@ -68,6 +69,11 @@
                         <td>
                             <div class="text-center">
                                 <a type="button" class="badge bg-warning" href="{{ url('/personnel/edit-personnel/'.$val['personnel_id']) }}" title="Edit"><i class="far fa-edit"></i> Edit</a>
+                                @if($val['user_id'])
+                                    {{-- have a account --}}
+                                @else
+                                    <a type="button" class="badge bg-success" href="{{ url('/personnel/add-account-personnel/'.$val['personnel_id']) }}" title="Add Account"><i class="fas fa-user-circle"></i> Tambah Akun</a>
+                                @endif
                                 <a type="button" class="badge bg-lime" href="{{ url('personnel/detail/'.$val->personnel_id)}}" title="Detail"><i class="fas fa-list-ul"></i> Detail</a>
                                 <a type="button" class="badge bg-danger" href="{{ url('/personnel/delete-personnel/'.$val->personnel_id)}}" title="Delete"><i class="fas fa-trash-alt"></i> Hapus</a>
                             </div>

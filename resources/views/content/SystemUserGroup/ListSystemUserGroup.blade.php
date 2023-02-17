@@ -3,7 +3,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Sistem Pendukung Eleksi')
-<link rel="icon" href="{{ asset('resources/assets/logo_vote.ico')}}" />
+<link rel="icon" href="{{ asset('resources/assets/logo_epatrol.ico')}}" />
 
 @section('content_header')
     

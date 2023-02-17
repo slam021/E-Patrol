@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
-@section('title', 'Sistem Pendukung Eleksi')
-<link rel="shortcut icon" href="{{ asset('resources/assets/logo_vote.ico') }}" />
+@section('title', 'E-Patrol Security')
+<link rel="shortcut icon" href="{{ asset('resources/assets/logo_epatrol.ico') }}" />
 
 {{-- @section('content_header')
     

@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>E-Patrol Security</title>
-        <link rel="shortcut icon" href="{{ asset('resources/assets/logo_vote.ico') }}" />
+        <link rel="shortcut icon" href="{{ asset('resources/assets/logo_epatrol.ico') }}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->

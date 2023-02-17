@@ -47,7 +47,7 @@ return [
     */
 
     'logo' => '<b>E-Patrol Security</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/logo_vote.ico',
+    'logo_img' => 'resources/assets/logo_epatrol.ico',
     'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',

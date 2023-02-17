@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
-@section('title', 'E-Patrol')
+@section('title', 'E-Patrol Security')
+<link rel="shortcut icon" href="{{ asset('resources/assets/logo_epatrol.ico') }}" />
 
 @section('content_header')
 

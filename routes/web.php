@@ -53,9 +53,11 @@ Route::get('/system-user-group/delete-system-user-group/{user_id}', [SystemUserG
 Route::get('/personnel', [CorePersonnelController::class, 'index'])->name('personnel');
 Route::get('/personnel/add-personnel', [CorePersonnelController::class, 'addCorePersonnel'])->name('add-personnel');
 Route::post('/personnel/process-add-personnel', [CorePersonnelController::class, 'processAddCorePersonnel'])->name('process-add-personnel');
-Route::get('/personnel/detail/{personnel_id}', [CorePersonnelController::class, 'detailCorePersonnel'])->name('detail-personnel');
 Route::get('/personnel/edit-personnel/{personnel_id}', [CorePersonnelController::class, 'editCorePersonnel'])->name('edit-personnel');
 Route::post('/personnel/process-edit-personnel', [CorePersonnelController::class, 'processEditCorePersonnel'])->name('process-edit-personnel');
+Route::get('/personnel/add-account-personnel/{personnel_id}', [CorePersonnelController::class, 'addAccountCorePersonnel'])->name('add-account-personnel');
+Route::post('/personnel/process-add-account-personnel', [CorePersonnelController::class, 'processAddAccountCorePersonnel'])->name('process-add-account-personnel');
+Route::get('/personnel/detail/{personnel_id}', [CorePersonnelController::class, 'detailCorePersonnel'])->name('detail-personnel');
 Route::get('/personnel/delete-personnel/{personnel_id}', [CorePersonnelController::class, 'deleteCorePersonnel'])->name('delete-personnel');
 
 //====================================================================================================================================================//
@@ -80,7 +82,7 @@ Route::get('/location', [CoreLocationController::class, 'index'])->name('locatio
 Route::get('/location/add-location', [CoreLocationController::class, 'addCoreLocation'])->name('add-location');
 Route::post('/location/process-add-location', [CoreLocationController::class, 'processAddCoreLocation'])->name('process-add-location');
 Route::get('/location/edit-location/{location_id}', [CoreLocationController::class, 'editCoreLocation'])->name('edit-location');
-Route::post('/location/process-edit-location', [CoreLocationController::class, 'processEditCoreLocation'])->name('process-add-location');
+Route::post('/location/process-edit-location', [CoreLocationController::class, 'processEditCoreLocation'])->name('process-edit-location');
 Route::get('/location/delete-location/{location_id}', [CoreLocationController::class, 'deleteCoreLocation'])->name('delete-location');
 Route::get('/location/print-qr/{location_id}', [CoreLocationController::class, 'printQR'])->name('print-qr');
 Route::get('/location/print-all-qr/{location_id}', [CoreLocationController::class, 'printAllQR'])->name('print-all-qr');
@@ -91,6 +93,8 @@ Route::get('/schedule/add-schedule', [CoreScheduleController::class, 'addCoreSch
 Route::post('/schedule/process-add-schedule', [CoreScheduleController::class, 'processAddCoreSchedule'])->name('process-add-schedule');
 Route::get('/schedule/edit-schedule/{schedule_id}', [CoreScheduleController::class, 'editCoreSchedule'])->name('edit-schedule');
 Route::post('/schedule/process-edit-schedule', [CoreScheduleController::class, 'processEditCoreSchedule'])->name('process-edit-schedule');
+Route::get('/schedule/add-shift-schedule/{schedule_id}', [CoreScheduleController::class, 'addShiftCoreSchedule'])->name('add-shift-schedule');
+Route::post('/schedule/process-add-shift-schedule', [CoreScheduleController::class, 'processAddShiftCoreSchedule'])->name('process-add-shift-schedule');
 Route::get('/schedule/delete-schedule/{schedule_id}', [CoreScheduleController::class, 'deleteCoreSchedule'])->name('delete-schedule');
 
 //==================Core Shift==================//

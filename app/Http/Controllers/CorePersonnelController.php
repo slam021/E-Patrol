@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DataPersonnelRequest;
 use App\Models\CorePersonnel;
+use App\Models\User;
+use App\Models\SystemUserGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class CorePersonnelController extends Controller
 {
@@ -118,6 +121,41 @@ class CorePersonnelController extends Controller
             $msg = 'Edit Data Personil Gagal';
         }
         return redirect('/personnel')->with('msg', $msg);
+    }
+
+    public function addAccountCorePersonnel($personnel_id){
+        $systemuser = User::where('data_state','=',0)->max('user_id');
+        $systemusergroup = SystemUserGroup::where('data_state','=',0)->pluck('user_group_name', 'user_group_id');
+        $nullsystemusergoup = Session::get('user_group_id');
+
+        return view('content.CorePersonnel.AddAccountCorePersonnel', compact('systemusergroup', 'nullsystemusergoup', 'systemuser'));
+    }
+
+    public function processAddAccountCorePersonnel(Request $request){
+        // $timses_id = $request['timses_id'];
+        $fields = $request->validate([
+            'name'                      => 'required',
+            'password'                  => 'required',
+            'user_group_id'             => 'required',
+            'user_id'                   => 'required',
+            'personnel_id'              => 'required'
+        ]);
+
+        $user = User::create([
+            'name'                     => $fields['name'],
+            'password'                 => Hash::make($fields['password']),
+            'user_group_id'            => $fields['user_group_id'],
+        ]);
+
+        if($fields['personnel_id']){
+        $item  = CorePersonnel::findOrFail($fields['personnel_id']);
+        $item -> user_id = $fields['user_id'];
+        $item ->save();
+        }
+        // print_r($request->all()); exit;
+
+        $msg = 'Tambah Akun Personil Berhasil';
+        return redirect('/personnel')->with('msg',$msg);
     }
 
     public function deleteCorePersonnel($personnel_id)

@@ -2,8 +2,9 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Sistem Pendukung Eleksi')
-<link rel="icon" href="{{ asset('resources/assets/logo_vote.ico')}}" />
+@section('title', 'E-Patrol Security')
+<link rel="shortcut icon" href="{{ asset('resources/assets/logo_epatrol.ico') }}" />
+<link rel="icon" href="{{ asset('resources/assets/logo_epatrol.ico')}}" />
 
 @section('content_header')
     
@@ -40,7 +41,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="example" style="width:100%" class="table table-striped table-bordered table-hover table-full-width">
+            <table id="example" class="table table-striped table-bordered table-hover table-full-width">
                 <thead>
                     <tr>
                         <th width="2%" style='text-align:center'>User ID</th>
