@@ -28,10 +28,10 @@
 
 @section('content')
 
-<h3 class="page-title">
+{{-- <h3 class="page-title">
     Form Tambah System User
 </h3>
-<br/>
+<br/> --}}
 @if(session('msg'))
 <div class="alert alert-info" role="alert">
     {{session('msg')}}

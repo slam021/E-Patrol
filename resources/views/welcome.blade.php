@@ -16,20 +16,19 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('resources/css/styles.css') }}" rel="stylesheet" />
     </head>
-    <body style="background-image: url('resources/img/logosimpel/pemilu.png'); background-size: cover; background-repeat: no-repeat; ">
-      
+    <body style="background-image: url('resources/img/logosimpel/police_3.jpg'); background-size: cover; background-repeat: no-repeat; opacity:1; ">
         <div class="masthead">
-            <img src="{{asset('resources/img/logosimpel/KPU.png')}}" id="logo" style="width: 80px; height: 80px; position:absolute; top: 5px; left:5px;">
+            {{-- <img src="{{asset('resources/img/logosimpel/KPU.png')}}" id="logo" style="width: 80px; height: 80px; position:absolute; top: 5px; left:5px;"> --}}
             <div class="masthead-content text-white">
                 <div class="container-fluid px-4 px-lg-0">
-                    <img src="{{asset('resources/img/logosimpel/logo_sispensi.png')}}" id="logo" style="width: 400px; height: 130px;">
-                    {{-- <h1 class="fst-italic lh-1 mb-4">SMArT Baznas Sragen</h1>
-                    <p class="mb-5">Sistem Manajemen Administrasi Terpadu</p> --}}
+                    <img src="{{asset('resources/img/logosimpel/logo_epatrol.jpg')}}" id="logo" style="width: 150px; height: 130px; margin-left: 65px">
+                    <h1 class="fst-italic lh-1 mb-4">E-Patrol Security</h1>
+                    {{-- <p class="mb-5">Sistem Manajemen Administrasi Terpadu</p> --}}
                     <form>
                         <!-- Email address input-->
                         <div class="row input-group-newsletter">
                             {{-- <div class="col-auto"><a href="{{ route('register') }}" class="btn btn-primary">Daftar</a></div> --}}
-                            <div class="col-auto" href="{{ route('login') }}" ><a href="{{ route('login') }}" class="btn bg-light" style="margin-top: 5px; margin-left: 190px">Masuk</a></div>
+                            <div class="col-auto" href="{{ route('login') }}" ><a href="{{ route('login') }}" class="btn bg-light" style="margin-top: 1px; margin-left: 100px">Masuk</a></div>
                         </div>
                     </form>
                 </div>

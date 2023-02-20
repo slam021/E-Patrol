@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use App\Models\CoreCandidate;
+use App\Models\CorePersonnel;
 use App\Models\CoreLocation;
 use App\Models\CorePollingStation;
+use App\Models\CoreSchedule;
+use App\Models\CoreShift;
 use App\Models\CoreSupporter;
 use App\Models\CoreTimses;
 
@@ -43,26 +45,22 @@ class HomeController extends Controller
         ->orderBy('system_menu_mapping.id_menu','ASC')
         ->get();
 
-        // $corecandidate = CoreCandidate::select('core_candidate.*')
-        // ->where('data_state', '=', 0)
-        // ->get();
+        $corepersonnel = CorePersonnel::where('data_state', '=', 0)
+        ->get();
 
-        // $corelocation = CoreLocation::select('core_location.*')
-        // ->where('data_state', '=', 0)
-        // ->get();
+        $corelocation = CoreLocation::where('data_state', '=', 0)
+        ->get();
 
-        // $corepollingstation = CorePollingStation::select('core_polling_station.*')
-        // ->where('data_state', '=', 0)
-        // ->get();
+        $coreshift = CoreShift::where('data_state', '=', 0)
+        ->get();
 
-        // $coresupporter = CoreSupporter::select('core_supporter.*')
-        // ->where('data_state', '=', 0)
-        // ->get();
+        $coreschedule = CoreSchedule::where('data_state', '=', 0)
+        ->get();
 
         // $coretimses = CoreTimses::select('core_timses.*')
         // ->where('data_state', '=', 0)
         // ->get();
 
-        return view('home',compact('menus'));
+        return view('home',compact('menus', 'corepersonnel', 'corelocation', 'coreshift', 'coreschedule'));
     }
 }

@@ -22,109 +22,101 @@ Dashboard
     <div class="card-body">
         <div class="row">
             <div class='col-md-3'>
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3 style="text-align: left; margin-left:10px"><b></b></h3>
+                <div class="info-box">
+                    <span class="info-box-icon bg-warning elevation-1">
+                        <a><i class="fas fa-users" href=""></i></a>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text"><b><u>Personil</u></b></span>
+                        <span class="info-box-number">{{$corepersonnel->count()}}</span>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-user-tie" style='font-size:60px; color:rgb(37, 35, 35); margin-right: 70px'></i>
-                    </div>
-                    <br>
-                    <a class="small-box-footer" href="">
-                        <b>Kandidate</b>
-                        <i class='far fa-arrow-alt-circle-right'></i>
-                    </a>
                 </div>
             </div>
             <div class='col-md-3'>
-                <div class="small-box bg-primary">
-                    <div class="inner">
-                        <h3 style="text-align: left; margin-left:10px "><b></b></h3>
+                <div class="info-box">
+                    <span class="info-box-icon bg-success elevation-1">
+                        <a><i class="fas fa-map-marked-alt" href=""></i></a>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text"><b><u>Lokasi Patroli</u></b></span>
+                        <span class="info-box-number">{{$corelocation->count()}}</span>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-map-marked-alt	" style='font-size:60px; color:rgb(255, 255, 255); margin-right: 70px'></i>
-                    </div>
-                    <br>
-                    <a class="small-box-footer" href="">
-                        <b>Lokasi</b>
-                        <i class='far fa-arrow-alt-circle-right'></i>
-                    </a>
                 </div>
             </div>
             <div class='col-md-3'>
-                <div class="small-box bg-danger">
-                    <div class="inner">
-                        <h3 style="text-align: left; margin-left:10px"><b></b></h3>
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger elevation-1">
+                        <a><i class="fas fa-sync-alt" href=""></i></a>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text"><b><u>Shift</u></b></span>
+                        <span class="info-box-number">{{$coreshift->count()}}</span>
                     </div>
-                    <div class="icon">
-                        <i class="	fas fa-vote-yea" style='font-size:60px; color:rgb(255, 255, 255); margin-right: 70px'></i>
-                    </div>
-                    <br>
-                    <a class="small-box-footer" href="">
-                        <b>TPS</b>
-                        <i class='far fa-arrow-alt-circle-right'></i>
-                    </a>
                 </div>
             </div>
             <div class='col-md-3'>
-                <div class="small-box bg-info">
-                    <div class="inner">
-                        <h3 style="text-align: left; margin-left:10px "><b></b></h3>
+                <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1">
+                        <a><i class="fas fa-clock" href="{{url('/schedule')}}"></i></a>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text"><b><u>Jadwal Patroli</u></b></span>
+                        <span class="info-box-number">{{$coreschedule->count()}}</span>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-users" style='font-size:60px; color:rgb(255, 255, 255); margin-right: 70px'></i>
-                    </div>
-                    <br>
-                    <a class="small-box-footer" href="">
-                        <b>Timses</b>
-                        <i class='far fa-arrow-alt-circle-right'></i>
-                    </a>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class='col-md-6'>
-                <div class="card" style="height: 250px;">
+                <div class="card" style="height: 300px;">
                     <div class="card-header bg-secondary">
-                    Other
+                    List
                     </div>
                     <div class="card-body">
                     <ul class="list-group">
                     <?php foreach($menus as $menu){
                         if($menu['id_menu']==4){
                     ?>
-                        <li class="list-group-item main-menu-item" onClick="location.href=''"> <i class="fa fa-angle-right"></i> List Acara</li>         
+                        <li class="list-group-item main-menu-item" onClick="location.href='/personnel'"> <i class="fa fa-angle-right"></i> List Personil</li>         
                     <?php   }
                         if($menu['id_menu']==5){
                     ?> 
-                        <li class="list-group-item main-menu-item" onClick="location.href=''"> <i class="fa fa-angle-right"></i> List Quick Count</li>  
-                    <?php 
-                            }
-                        } 
-                    ?>                    
+                        <li class="list-group-item main-menu-item" onClick="location.href='/schedule'"> <i class="fa fa-angle-right"></i> List Jadwal Patroli</li>  
+                    <?php   }
+                        if($menu['id_menu']==71){
+                    ?>     
+                        <li class="list-group-item main-menu-item" onClick="location.href='/location'"> <i class="fa fa-angle-right"></i> List Lokasi</li> 
+                    <?php   }
+                        if($menu['id_menu']==72){
+                    ?>     
+                        <li class="list-group-item main-menu-item" onClick="location.href='/shift'"> <i class="fa fa-angle-right"></i> List Shift</li> 
+                    <?php
+                        }
+                    }  
+                    ?>             
                     </ul>
                 </div>
                 </div>
             </div>
             <div class='col-md-6'>
-                <div class="card" style="height: 250px;">
+                <div class="card" style="height: 300px;">
                     <div class="card-header bg-secondary">
-                    Accounting
+                    Laporan
                     </div>
                     <div class="card-body">
                     <ul class="list-group">
                     <?php foreach($menus as $menu){
-                            if($menu['id_menu']==61){
+                            if($menu['id_menu']==81){
                     ?>
-                        <li class="list-group-item main-menu-item" onClick="location.href=''"> <i class="fa fa-angle-right"></i> COA</li>
+                        <li class="list-group-item main-menu-item" onClick="location.href=''"> <i class="fa fa-angle-right"></i> Laporan Data Personil</li>
                     <?php   }
-                            if($menu['id_menu']==62){
+                            if($menu['id_menu']==82){
                     ?> 
-                        <li class="list-group-item main-menu-item" onClick="location.href=''"> <i class="fa fa-angle-right"></i> Buku Besar</li>      
+                        <li class="list-group-item main-menu-item" onClick="location.href=''"> <i class="fa fa-angle-right"></i> Laporan Presensi Personil</li>      
                     <?php   }
-                            if($menu['id_menu']==63){
+                            if($menu['id_menu']==83){
                     ?> 
-                            <li class="list-group-item main-menu-item" onClick="location.href=''"> <i class="fa fa-angle-right"></i> Jurnal Umum</li>  
+                            <li class="list-group-item main-menu-item" onClick="location.href=''"> <i class="fa fa-angle-right"></i> Laporan Jadwal Patroli</li>  
                     <?php 
                             }
                         } 

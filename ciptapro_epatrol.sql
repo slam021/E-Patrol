@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2023 at 10:54 AM
+-- Generation Time: Feb 20, 2023 at 10:54 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -347,6 +347,7 @@ CREATE TABLE `core_patrol_task` (
 
 CREATE TABLE `core_personnel` (
   `personnel_id` int(10) NOT NULL,
+  `user_id` int(10) DEFAULT NULL,
   `personnel_full_name` varchar(100) NOT NULL,
   `personnel_nick_name` varchar(100) NOT NULL,
   `personnel_nik` varchar(16) NOT NULL,
@@ -366,10 +367,10 @@ CREATE TABLE `core_personnel` (
 -- Dumping data for table `core_personnel`
 --
 
-INSERT INTO `core_personnel` (`personnel_id`, `personnel_full_name`, `personnel_nick_name`, `personnel_nik`, `personnel_gender`, `personnel_address`, `personnel_phone`, `personnel_phone_family`, `personnel_birth_place`, `personnel_birth_date`, `data_state`, `created_id`, `created_at`, `updated_at`) VALUES
-(6, 'Fajar', 'Fajar', 'asas', '1', 'asasa', '4343434343434', '089786815161', 'sasas', '2022-11-26', 0, 55, '2022-11-25 19:41:24', '2022-11-25 19:41:24'),
-(7, 'Ucup', 'dadad', '54545', '1', 'adadad', '5454545', '54545454', 'rerere', '2023-01-07', 0, 55, '2023-01-06 17:00:00', '2023-01-06 21:59:42'),
-(8, 'pipip', 'dgdgdgd', '54454', '1', 'dgdgdgdg', '5454454', '54545454', 'dgdgdgd', '2023-01-07', 1, 55, '2023-01-06 17:00:00', '2023-02-16 01:32:29');
+INSERT INTO `core_personnel` (`personnel_id`, `user_id`, `personnel_full_name`, `personnel_nick_name`, `personnel_nik`, `personnel_gender`, `personnel_address`, `personnel_phone`, `personnel_phone_family`, `personnel_birth_place`, `personnel_birth_date`, `data_state`, `created_id`, `created_at`, `updated_at`) VALUES
+(6, 71, 'Fajar', 'Fajar', 'asas', '1', 'asasa', '4343434343434', '089786815161', 'sasas', '2022-11-26', 0, 55, '2022-11-25 19:41:24', '2023-02-16 20:17:57'),
+(7, NULL, 'Ucup', 'dadad', '54545', '1', 'adadad', '5454545', '54545454', 'rerere', '2023-01-07', 0, 55, '2023-01-06 17:00:00', '2023-01-06 21:59:42'),
+(8, NULL, 'pipip', 'dgdgdgd', '54454', '1', 'dgdgdgdg', '5454454', '54545454', 'dgdgdgd', '2023-01-07', 1, 55, '2023-01-06 17:00:00', '2023-02-16 01:32:29');
 
 -- --------------------------------------------------------
 
@@ -1598,12 +1599,16 @@ CREATE TABLE `system_menu` (
 
 INSERT INTO `system_menu` (`id_menu`, `id`, `type`, `indent_level`, `text`, `image`, `last_update`) VALUES
 ('0', 'home', 'file', 1, 'Beranda', NULL, '2021-12-18 04:09:42'),
-('5', 'personnel', 'file', 1, 'Personil', NULL, '2023-02-16 08:23:47'),
-('6', 'schedule', NULL, 1, 'Jadwal Patroli', NULL, '2023-02-16 08:24:04'),
-('7', 'precense', 'file', 1, 'Presensi Personil', NULL, '2023-02-16 09:43:06'),
-('8', '#', 'folder', 1, 'Konfigurasi', NULL, '2023-01-06 08:09:10'),
-('81', 'location', 'file', 2, 'Lokasi Patroli', NULL, '2023-02-16 08:24:36'),
-('82', 'shift', 'file', 2, 'Shift Patroli', NULL, '2023-02-16 08:24:43'),
+('4', 'personnel', 'file', 1, 'Personil', NULL, '2023-02-20 07:39:39'),
+('5', 'schedule', 'file', 1, 'Jadwal Patroli', NULL, '2023-02-20 07:40:02'),
+('6', 'precense', 'file', 1, 'Presensi Personil', NULL, '2023-02-20 07:39:00'),
+('7', '#', 'folder', 1, 'Konfigurasi', NULL, '2023-02-20 07:39:02'),
+('71', 'location', 'file', 2, 'Lokasi Patroli', NULL, '2023-02-20 07:39:14'),
+('72', 'shift', 'file', 2, 'Shift Patroli', NULL, '2023-02-20 07:39:16'),
+('8', '#', 'folder', 1, 'Laporan', NULL, '2023-02-20 07:40:13'),
+('81', 'report-data-personnel', 'file', 2, 'Laporan Data Personil', NULL, '2023-02-20 07:41:16'),
+('82', 'report-presence', 'file', 2, 'Laporan Presensi Personil', NULL, '2023-02-20 07:41:55'),
+('83', 'report-schedule', 'file', 2, 'Laporan Jadwal Personil', NULL, '2023-02-20 07:42:23'),
 ('9', '#', 'folder', 1, 'System', NULL, '2023-01-06 08:07:07'),
 ('91', 'system-user', 'file', 2, 'System User', NULL, '2023-01-06 08:07:11'),
 ('92', 'system-user-group', 'file', 2, 'System User Group', NULL, '2023-01-06 08:07:17');
@@ -1629,13 +1634,17 @@ CREATE TABLE `system_menu_mapping` (
 INSERT INTO `system_menu_mapping` (`menu_mapping_id`, `user_group_level`, `id_menu`, `created_at`, `updated_at`) VALUES
 (39, 1, '9', '2022-01-07 04:16:59', '2022-01-06 21:16:59'),
 (40, 1, '91', '2022-01-07 04:16:59', '2022-01-06 21:16:59'),
-(139, 1, '5', NULL, '2023-01-06 07:59:22'),
-(140, 1, '8', NULL, '2023-01-06 07:59:48'),
-(142, 1, '81', NULL, '2023-01-06 08:00:08'),
-(143, 1, '82', NULL, '2023-01-06 08:01:13'),
+(139, 1, '4', NULL, '2023-01-06 07:59:22'),
+(140, 1, '7', NULL, '2023-01-06 07:59:48'),
+(142, 1, '71', NULL, '2023-01-06 08:00:08'),
+(143, 1, '72', NULL, '2023-01-06 08:01:13'),
 (145, 1, '92', NULL, '2023-01-06 08:06:36'),
-(146, 1, '6', NULL, '2023-02-16 08:24:57'),
-(147, 1, '7', NULL, '2023-02-16 09:43:29');
+(146, 1, '5', NULL, '2023-02-16 08:24:57'),
+(147, 1, '6', NULL, '2023-02-16 09:43:29'),
+(149, 1, '8', NULL, '2023-02-20 07:44:40'),
+(150, 1, '81', NULL, '2023-02-20 07:44:44'),
+(151, 1, '82', NULL, '2023-02-20 07:44:45'),
+(152, 1, '83', NULL, '2023-02-20 07:44:46');
 
 -- --------------------------------------------------------
 
@@ -1666,15 +1675,9 @@ CREATE TABLE `system_user` (
 
 INSERT INTO `system_user` (`user_id`, `user_group_id`, `full_name`, `name`, `phone_number`, `branch_id`, `section_id`, `email`, `email_verified_at`, `password`, `remember_token`, `data_state`, `created_at`, `updated_at`) VALUES
 (55, 1, 'Administrator', 'administrator', '08812792729', 0, 0, NULL, NULL, '$2y$10$Gu0p9pK0sFSHGPJWKfh2c.Jn4/nE07m6FkO0OkcY1oPvm6djcMiFi', NULL, 0, '2021-10-25 20:03:14', '2022-06-08 20:33:46'),
-(62, 22, 'Ratih Ayuningtyas Utam', 'ratih', '085235888790', 0, 1, NULL, NULL, '$2y$10$lb2D2Cm.eB6hL0faR4WgauTURIEtQtDTw4yHBQ6YvPCObObOVzlGi', NULL, 0, '2022-03-16 21:02:57', '2022-03-16 23:24:41'),
-(63, 23, 'Anwar Samsuri', 'anwar', '085641130779', 0, 9, NULL, NULL, '$2y$10$dfQEcKKlZTTcnp/nfu18YOnMdzSlswlcplPIxjDUv8SH5HG97aPYK', NULL, 0, '2022-03-16 21:04:22', '2022-03-17 00:54:28'),
-(64, 21, 'Sepby Widyo Utomo', 'sepby', '085642430947', 0, 9, NULL, NULL, '$2y$10$ai7DMzWoXgpo3m3QKt9huu/j4AXUNYNyJrLoSygAHPFJ2xDV23Qmm', NULL, 0, '2022-03-16 21:05:03', '2022-03-16 23:45:49'),
-(65, 21, 'Vivi', 'vivi', '083869950063', 0, 11, NULL, NULL, '$2y$10$uVQ7WjPuq/5AedNzDENI7OdJm4nvwxFGwnDNsMptxPcdqY8N6obL2', NULL, 0, '2022-03-16 21:05:30', '2022-03-16 21:05:30'),
-(66, 21, 'Ira Trisnawati', 'iratrisnawati', '085642336339', 0, 11, NULL, NULL, '$2y$10$rI8nRBhqiHuI0bcUHpMGB.uhrZZZo5RPrQxjLukYeYBmgyCrFXAVC', NULL, 0, '2022-03-16 21:06:08', '2022-03-16 21:19:40'),
-(67, 17, 'Dewi Nuraini', 'aini', '083125183360', 0, 10, NULL, NULL, '$2y$10$x0hx6eT9hQX8wICgYZm7ZuFapMAJ3yRd1EKWK24rxdm.9g4c8Ms/K', NULL, 0, '2022-03-16 21:21:46', '2022-03-16 22:56:46'),
-(68, 21, 'SASASA', 'sasasa', '123123123123123123', 0, 10, NULL, NULL, '$2y$10$rX6Gu2mLKjpvA0Ja5idKVeETzq/rs7rBSjDa4xqtwUWv4jPgRHwQG', NULL, 1, '2022-03-17 23:54:26', '2022-03-17 23:59:54'),
 (69, 1, 'lalala', 'lalala', NULL, 0, 0, NULL, NULL, '$2y$10$U9sDIhbeInpg0nVa8vKhTu4dVKSOzgMKmqBli8nilzpeVWJ0ne7Fy', NULL, 0, '2022-03-23 01:54:51', '2022-03-23 01:54:51'),
-(70, 1, 'fufufu`', 'fufufu', NULL, 0, 0, NULL, NULL, '$2y$10$SzJyWM6rCcTmjxZ4ptXmBuvOSfUT2QNEGIO1r3qwWJQhbGvK6pS0C', NULL, 0, '2022-03-23 01:54:58', '2022-03-23 01:54:58');
+(70, 1, 'fufufu`', 'fufufu', NULL, 0, 0, NULL, NULL, '$2y$10$SzJyWM6rCcTmjxZ4ptXmBuvOSfUT2QNEGIO1r3qwWJQhbGvK6pS0C', NULL, 0, '2022-03-23 01:54:58', '2022-03-23 01:54:58'),
+(71, 2, '', 'fajar', '', 0, 0, NULL, NULL, '$2y$10$WO1QHcEKtzHPhZ02ciIVqOKIfTuwCn7TQr2Fu53R9r7cltoqSOxvS', NULL, 0, '2023-02-16 20:17:57', '2023-02-16 20:17:57');
 
 -- --------------------------------------------------------
 
@@ -1703,13 +1706,7 @@ CREATE TABLE `system_user_group` (
 
 INSERT INTO `system_user_group` (`user_group_id`, `user_group_level`, `user_group_name`, `user_group_token`, `data_state`, `created_id`, `created_at`, `updated_id`, `updated_on`, `deleted_id`, `deleted_on`, `updated_at`) VALUES
 (1, 1, 'Administrator', '', 0, 0, NULL, 0, NULL, 0, NULL, '2021-10-26 03:02:23'),
-(17, 2, 'FrontDesk', '', 0, 0, '2022-01-07 03:37:13', 0, NULL, 0, NULL, '2022-01-06 20:37:13'),
-(18, 45, 'testes', '', 1, 0, '2022-02-22 02:36:53', 0, NULL, 0, NULL, '2022-02-21 19:37:08'),
-(19, 22, 'testes', '', 1, 0, '2022-02-22 02:37:23', 0, NULL, 0, NULL, '2022-02-21 19:37:32'),
-(20, 3, 'SDM dan Administrasi', '', 1, 0, '2022-03-17 04:01:02', 0, NULL, 0, NULL, '2022-03-16 23:40:19'),
-(21, 4, 'Staff Disposisi', '', 0, 0, '2022-03-17 04:01:36', 0, NULL, 0, NULL, '2022-03-16 21:01:36'),
-(22, 5, 'SDM dan Administrasi', '', 0, 0, '2022-03-17 06:23:51', 0, NULL, 0, NULL, '2022-03-16 23:24:07'),
-(23, 6, 'Rangkap Disposisi & FO', '', 0, 0, '2022-03-17 07:53:50', 0, NULL, 0, NULL, '2022-03-17 00:53:50');
+(2, 2, 'Personil', '', 0, 0, NULL, 0, NULL, 0, NULL, '2023-02-17 03:16:41');
 
 -- --------------------------------------------------------
 
@@ -1974,13 +1971,13 @@ ALTER TABLE `system_log_user`
 -- AUTO_INCREMENT for table `system_menu_mapping`
 --
 ALTER TABLE `system_menu_mapping`
-  MODIFY `menu_mapping_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `menu_mapping_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT for table `system_user`
 --
 ALTER TABLE `system_user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `system_user_group`
