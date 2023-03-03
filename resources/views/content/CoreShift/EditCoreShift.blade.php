@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <a class="text-dark">Nama Shift<a class='red'> *</a></a>
                         <input class="form-control input-bb" type="text" name="shift_name" id="shift_name" value="{{$core_shift->shift_name}}" />
-                        <input class="form-control input-bb" type="text" name="shift_id" id="shift_id" value="{{$core_shift->shift_id}}" autocomplete="off"/>
+                        <input class="form-control input-bb" type="hidden" name="shift_id" id="shift_id" value="{{$core_shift->shift_id}}" autocomplete="off"/>
                     </div>
                 </div>
                 <div class="col-md-4">

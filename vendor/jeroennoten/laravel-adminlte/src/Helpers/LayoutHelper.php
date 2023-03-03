@@ -23,6 +23,16 @@ class LayoutHelper
     protected static $sidebarMiniValues = ['xs', 'md', 'lg'];
 
     /**
+     * Check if the preloader animation is enabled.
+     *
+     * @return bool
+     */
+    public static function isPreloaderEnabled()
+    {
+        return config('adminlte.preloader.enabled', false);
+    }
+
+    /**
      * Check if layout topnav is enabled.
      *
      * @return bool
@@ -130,7 +140,7 @@ class LayoutHelper
     /**
      * Make the set of classes related to a fixed responsive configuration.
      *
-     * @param string $section The layout section (navbar or footer)
+     * @param  string  $section  The layout section (navbar or footer)
      * @return array
      */
     private static function makeFixedResponsiveClasses($section)
@@ -165,9 +175,9 @@ class LayoutHelper
      * Make a responsive class for the navbar/footer fixed mode on a particular
      * breakpoint token.
      *
-     * @param string $section The layout section (navbar or footer)
-     * @param string $bp The screen breakpoint (xs, sm, md, lg, xl)
-     * @param bool $enabled Whether to enable fixed mode (true, false)
+     * @param  string  $section  The layout section (navbar or footer)
+     * @param  string  $bp  The screen breakpoint (xs, sm, md, lg, xl)
+     * @param  bool  $enabled  Whether to enable fixed mode (true, false)
      * @return string
      */
     private static function makeFixedResponsiveClass($section, $bp, $enabled)
@@ -200,7 +210,7 @@ class LayoutHelper
 
         if (in_array($sidebarMiniCfg, self::$sidebarMiniValues)) {
             $suffix = $sidebarMiniCfg === 'lg' ? '' : "-{$sidebarMiniCfg}";
-            $classes[] = "sidebar-mini${suffix}";
+            $classes[] = "sidebar-mini{$suffix}";
         }
 
         // Add classes related to the "sidebar_collapse" configuration.

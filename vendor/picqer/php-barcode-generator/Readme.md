@@ -8,7 +8,8 @@ It creates SVG, PNG, JPG and HTML images, from the most used 1D barcode standard
 *The codebase is based on the [TCPDF barcode generator](https://github.com/tecnickcom/TCPDF) by Nicola Asuni. This code is therefor licensed under LGPLv3.*
 
 ## No support for...
-We do not support any 2D barcodes, like QR codes. We also only generate the 'bars' part of a barcode. If you want text of the code below the barcode, you could add it later to the output of this package. 
+- No support for any **2D** barcodes, like QR codes.
+- We only generate the 'bars' part of a barcode, without text below the barcode. If you want text of the code below the barcode, you could add it later to the output of this package. 
 
 ## Installation
 Install through [composer](https://getcomposer.org/doc/00-intro.md):
@@ -65,6 +66,7 @@ These barcode types are supported. All types support different character sets or
 
 Most used types are TYPE_CODE_128 and TYPE_CODE_39. Because of the best scanner support, variable length and most chars supported.
 
+- TYPE_CODE_32 (italian pharmaceutical code 'MINSAN')
 - TYPE_CODE_39
 - TYPE_CODE_39_CHECKSUM
 - TYPE_CODE_39E

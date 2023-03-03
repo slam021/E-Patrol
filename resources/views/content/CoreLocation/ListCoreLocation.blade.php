@@ -36,7 +36,7 @@
             <button onclick="location.href='{{ url('location/add-location') }}'" name="Find" class="btn btn-sm btn-info" title="Add Data"><i class="fa fa-plus"></i> Tambah Lokasi Patroli</button>
         </div>
     </div>
-
+    
     <div class="card-body">
         <div class="table-responsive">
             <table id="example" class="table table-sm table-striped table-bordered table-hover table-full-width">
@@ -67,13 +67,11 @@
                     </tr>
                     @endforeach 
                 </tbody>
-            </table>  
-            <div class="pt-1 float-right">
                 @if (empty($val['location_id']))
                 @else
-                <a href="{{ url('/location/print-all-qr/'.$val['location_id']) }}" type="button" name="Print All" class="btn btn-primary btn-sm" title="Print All"><i class="fa fa-qrcode"></i> Print Semua QR Code</a>
+                <a href="{{ url('/location/print-all-qr/'.$val['location_id']) }}" type="button" name="Print All" class="mb-4 btn btn-primary btn-sm" title="Print All"><i class="fa fa-qrcode"></i> Print Semua QR Code</a>
                 @endif
-            </div>
+            </table>  
         </div>
     </div>
 </div>

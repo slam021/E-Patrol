@@ -132,7 +132,7 @@ interface LegacyMockInterface
     public function mockery_teardown();
 
     /**
-     * Fetch the next available disposition order number
+     * Fetch the next available allocation order number
      *
      * @return int
      */

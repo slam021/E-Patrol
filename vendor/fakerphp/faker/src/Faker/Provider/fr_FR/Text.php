@@ -14946,7 +14946,7 @@ battue, dont aussitôt il ne fît part au public, toujours guidé par
 l'amour du progrès et la haine des prêtres. Il établissait des
 comparaisons entre les écoles primaires et les frères ignorantins,
 au détriment de ces derniers, rappelait la Saint-Barthélemy à
-propos d'une disposition de cent francs faite à l'église, et
+propos d'une allocation de cent francs faite à l'église, et
 dénonçait des abus, lançait des boutades. C'était son mot. Homais
 sapait; il devenait dangereux.
 

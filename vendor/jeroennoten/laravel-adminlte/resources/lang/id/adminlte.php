@@ -14,7 +14,7 @@ return [
     'sign_in'                     => 'Masuk',
     'log_out'                     => 'Keluar',
     'toggle_navigation'           => 'Toggle navigasi',
-    'login_message'               => 'Silahkan Login',
+    'login_message'               => 'Masuk untuk memulai sesi Anda',
     'register_message'            => 'Daftar sebagai anggota baru',
     'password_reset_message'      => 'Atur Ulang Kata Sandi',
     'reset_password'              => 'Atur Ulang Kata Sandi',

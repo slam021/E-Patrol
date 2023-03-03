@@ -2,7 +2,6 @@
 
 @section('title', 'E-Patrol Security')
 <link rel="shortcut icon" href="{{ asset('resources/assets/logo_epatrol.ico') }}" />
-<link rel="shortcut icon" href="{{ asset('resources/assets/logo_epatrol.ico') }}" />
 
 @section('js')
 <script>
@@ -82,8 +81,8 @@
                     <div class="form-group">
                         <a class="text-dark">User name<a class='red'> *</a></a>
                         <input class="form-control input-bb" type="text"name="name" id="timses_name" value="{{old('name')}}" autocomplete="off" />
-                        <input class="form-control input-bb" type="text"name="user_id" id="user_id" value="{{$systemuser}}" autocomplete="off" readonly/> 
-                        <input class="form-control input-bb" type="text"name="personnel_id" id="personnel_id" value="{{$personnel_id}}" autocomplete="off" readonly/>
+                        <input class="form-control input-bb" type="hidden"name="user_id" id="user_id" value="{{$systemuser}}" autocomplete="off" readonly/> 
+                        <input class="form-control input-bb" type="hidden"name="personnel_id" id="personnel_id" value="{{$personnel_id}}" autocomplete="off" readonly/>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -100,7 +99,6 @@
                 <button type="submit" name="Save" class="btn btn-success btn-sm" title="Save"><i class="fa fa-check"></i> Simpan</button>
             </div>
         </div>
-    </div>
     </div>
 </form>
 

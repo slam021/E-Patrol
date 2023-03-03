@@ -16,7 +16,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('resources/css/styles.css') }}" rel="stylesheet" />
     </head>
-    <body style="background-image: url('resources/img/logosimpel/police_3.jpg'); background-size: cover; background-repeat: no-repeat; opacity:1; ">
+    <body style="background-image: url('resources/img/logosimpel/monitor.jpg'); background-size: cover; background-repeat: no-repeat; opacity:1; ">
         <div class="masthead">
             {{-- <img src="{{asset('resources/img/logosimpel/KPU.png')}}" id="logo" style="width: 80px; height: 80px; position:absolute; top: 5px; left:5px;"> --}}
             <div class="masthead-content text-white">

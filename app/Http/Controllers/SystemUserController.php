@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\SystemUserGroup;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Session;
@@ -110,5 +111,37 @@ class SystemUserController extends Controller
         $usergroupname =  User::select('system_user_group.user_group_name')->join('system_user_group','system_user_group.user_group_id','=','system_user.user_group_id')->where('system_user.user_group_id','=',$user_group_id)->first();
 
         return $usergroupname['user_group_name'];
+    }
+
+    public function changePassword($user_id)
+    {
+        
+        return view('content.SystemUser.FormChangePassword', compact('user_id'));
+
+    }
+
+    public function processChangePassword(Request $request)
+    {
+        
+        // User::find(auth()->user()->user_id)->update([
+        //     'password'=> Hash::make($request->new_password)
+        //     ]);
+        $request->validate([
+            'password' => 'required',
+            'new_password' => 'required',
+
+        ]);
+        
+        if(Hash::check($request->password, Auth::user()->password))
+        {
+            User::find(auth()->user()->user_id)->update([
+            'password'=> Hash::make($request->new_password)
+            ]);
+            $msg = "Password Berhasil Diubah";
+            return redirect()->back()->with('msg',$msg);
+        }else{
+            $msg = "Password Lama Tidak Cocok";
+            return redirect()->back()->with('msg',$msg);
+        }
     }
 }

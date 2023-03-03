@@ -66,8 +66,8 @@
                 </div> -->
             </div>
             <div class="col-5">
-                <button type=submit class="btn btn-primary btn-sm{{ config('adminlte.auth_btn') }}" style="margin-left: 50px">
-                    <span class="fas fa-sign-in-alt"></span>
+                <button type=submit class="btn btn-primary {{ config('adminlte.auth_btn') }}" style="margin-left: 31px">
+                    <i class="fas fa-sign-in-alt"></i>
                     {{ __('adminlte::adminlte.sign_in') }}
                 </button>
             </div>

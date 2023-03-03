@@ -71,14 +71,14 @@ class OLE
     public $root;
 
     /**
-     * Big Block Disposition Table.
+     * Big Block Allocation Table.
      *
      * @var array (blockId => nextBlockId)
      */
     public $bbat;
 
     /**
-     * Short Block Disposition Table.
+     * Short Block Allocation Table.
      *
      * @var array (blockId => nextBlockId)
      */
@@ -110,15 +110,15 @@ class OLE
      *
      * @acces public
      *
-     * @param string $file
+     * @param string $filename
      *
      * @return bool true on success, PEAR_Error on failure
      */
-    public function read($file)
+    public function read($filename)
     {
-        $fh = fopen($file, 'rb');
-        if (!$fh) {
-            throw new ReaderException("Can't open file $file");
+        $fh = fopen($filename, 'rb');
+        if ($fh === false) {
+            throw new ReaderException("Can't open file $filename");
         }
         $this->_file_handle = $fh;
 
@@ -137,7 +137,7 @@ class OLE
 
         // Skip UID, revision number and version number
         fseek($fh, 44);
-        // Number of blocks in Big Block Disposition Table
+        // Number of blocks in Big Block Allocation Table
         $bbatBlockCount = self::readInt4($fh);
 
         // Root chain 1st block
@@ -147,24 +147,24 @@ class OLE
         fseek($fh, 56);
         // Streams shorter than this are stored using small blocks
         $this->bigBlockThreshold = self::readInt4($fh);
-        // Block id of first sector in Short Block Disposition Table
+        // Block id of first sector in Short Block Allocation Table
         $sbatFirstBlockId = self::readInt4($fh);
-        // Number of blocks in Short Block Disposition Table
+        // Number of blocks in Short Block Allocation Table
         $sbbatBlockCount = self::readInt4($fh);
-        // Block id of first sector in Master Block Disposition Table
+        // Block id of first sector in Master Block Allocation Table
         $mbatFirstBlockId = self::readInt4($fh);
-        // Number of blocks in Master Block Disposition Table
+        // Number of blocks in Master Block Allocation Table
         $mbbatBlockCount = self::readInt4($fh);
         $this->bbat = [];
 
         // Remaining 4 * 109 bytes of current block is beginning of Master
-        // Block Disposition Table
+        // Block Allocation Table
         $mbatBlocks = [];
         for ($i = 0; $i < 109; ++$i) {
             $mbatBlocks[] = self::readInt4($fh);
         }
 
-        // Read rest of Master Block Disposition Table (if any is left)
+        // Read rest of Master Block Allocation Table (if any is left)
         $pos = $this->getBlockOffset($mbatFirstBlockId);
         for ($i = 0; $i < $mbbatBlockCount; ++$i) {
             fseek($fh, $pos);
@@ -175,7 +175,7 @@ class OLE
             $pos = $this->getBlockOffset(self::readInt4($fh));
         }
 
-        // Read Big Block Disposition Table according to chain specified by $mbatBlocks
+        // Read Big Block Allocation Table according to chain specified by $mbatBlocks
         for ($i = 0; $i < $bbatBlockCount; ++$i) {
             $pos = $this->getBlockOffset($mbatBlocks[$i]);
             fseek($fh, $pos);
@@ -184,7 +184,7 @@ class OLE
             }
         }
 
-        // Read short block disposition table (SBAT)
+        // Read short block allocation table (SBAT)
         $this->sbat = [];
         $shortBlockCount = $sbbatBlockCount * $this->bigBlockSize / 4;
         $sbatFh = $this->getStream($sbatFirstBlockId);
@@ -245,13 +245,14 @@ class OLE
     /**
      * Reads a signed char.
      *
-     * @param resource $fh file handle
+     * @param resource $fileHandle file handle
      *
      * @return int
      */
-    private static function readInt1($fh)
+    private static function readInt1($fileHandle)
     {
-        [, $tmp] = unpack('c', fread($fh, 1));
+        // @phpstan-ignore-next-line
+        [, $tmp] = unpack('c', fread($fileHandle, 1));
 
         return $tmp;
     }
@@ -259,13 +260,14 @@ class OLE
     /**
      * Reads an unsigned short (2 octets).
      *
-     * @param resource $fh file handle
+     * @param resource $fileHandle file handle
      *
      * @return int
      */
-    private static function readInt2($fh)
+    private static function readInt2($fileHandle)
     {
-        [, $tmp] = unpack('v', fread($fh, 2));
+        // @phpstan-ignore-next-line
+        [, $tmp] = unpack('v', fread($fileHandle, 2));
 
         return $tmp;
     }
@@ -273,13 +275,14 @@ class OLE
     /**
      * Reads an unsigned long (4 octets).
      *
-     * @param resource $fh file handle
+     * @param resource $fileHandle file handle
      *
      * @return int
      */
-    private static function readInt4($fh)
+    private static function readInt4($fileHandle)
     {
-        [, $tmp] = unpack('V', fread($fh, 4));
+        // @phpstan-ignore-next-line
+        [, $tmp] = unpack('V', fread($fileHandle, 4));
 
         return $tmp;
     }
@@ -346,7 +349,7 @@ class OLE
             if ($pps->Type == self::OLE_PPS_TYPE_DIR || $pps->Type == self::OLE_PPS_TYPE_ROOT) {
                 $nos = [$pps->DirPps];
                 $pps->children = [];
-                while ($nos) {
+                while (!empty($nos)) {
                     $no = array_pop($nos);
                     if ($no != -1) {
                         $childPps = $this->_list[$no];
@@ -502,9 +505,6 @@ class OLE
         }
         $dateTime = Date::dateTimeFromTimestamp("$date");
 
-        // factor used for separating numbers into 4 bytes parts
-        $factor = 2 ** 32;
-
         // days from 1-1-1601 until the beggining of UNIX era
         $days = 134774;
         // calculate seconds
@@ -512,22 +512,15 @@ class OLE
         // multiply just to make MS happy
         $big_date *= 10000000;
 
-        $high_part = floor($big_date / $factor);
-        // lower 4 bytes
-        $low_part = floor((($big_date / $factor) - $high_part) * $factor);
-
         // Make HEX string
         $res = '';
 
-        for ($i = 0; $i < 4; ++$i) {
-            $hex = $low_part % 0x100;
-            $res .= pack('c', $hex);
-            $low_part /= 0x100;
-        }
-        for ($i = 0; $i < 4; ++$i) {
-            $hex = $high_part % 0x100;
-            $res .= pack('c', $hex);
-            $high_part /= 0x100;
+        $factor = 2 ** 56;
+        while ($factor >= 1) {
+            $hex = (int) floor($big_date / $factor);
+            $res = pack('c', $hex) . $res;
+            $big_date = fmod($big_date, $factor);
+            $factor /= 256;
         }
 
         return $res;

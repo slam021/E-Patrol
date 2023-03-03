@@ -136,7 +136,7 @@ class HTMLPurifier_Strategy_FixNesting extends HTMLPurifier_Strategy
                 if ($e) $e->send(E_ERROR, 'Strategy_FixNesting: Node excluded');
             } else {
                 // XXX I suppose it would be slightly more efficient to
-                // avoid the disposition here and have children
+                // avoid the allocation here and have children
                 // strategies handle it
                 $children = array();
                 foreach ($node->children as $child) {

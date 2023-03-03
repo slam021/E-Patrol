@@ -36,7 +36,7 @@ class Container
     protected $_mocks = array();
 
     /**
-     * Order number of disposition
+     * Order number of allocation
      *
      * @var int
      */
@@ -330,7 +330,7 @@ class Container
     }
 
     /**
-     * Fetch the next available disposition order number
+     * Fetch the next available allocation order number
      *
      * @return int
      */
